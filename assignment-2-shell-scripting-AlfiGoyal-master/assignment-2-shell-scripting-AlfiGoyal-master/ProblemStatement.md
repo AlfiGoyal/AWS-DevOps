@@ -481,13 +481,11 @@ branch have now been merged into the master branch.
 
 ### Check your work
 Here is what the contents of your git repository should look like before final submission:
-
 ```
-&#x2523; script1 +
-&#x2523; script2 +
-&#x2517; script3 +
+script1
+script2
+script3
 ```
-
 Note, all of these script files should be executable.
 
 ### Push project repo to GitHub
