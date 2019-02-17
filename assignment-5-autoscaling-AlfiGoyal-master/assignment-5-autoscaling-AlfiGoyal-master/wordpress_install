@@ -1,0 +1,17 @@
+wget -O /var/www/html/wp.tar.gz https://wordpress.org/latest.tar.gz
+tar xf /var/www/html/wp.tar.gz -C /var/www/html/
+rm /var/www/html/wp.tar.gz
+scp /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+sed 's/database_name_here/wordpress/' -i /var/www/html/wordpress/wp-config.php
+sed 's/username_here/wpdbadmin/' -i /var/www/html/wordpress/wp-config.php
+sed 's/password_here/test5123/' -i /var/www/html/wordpress/wp-config.php
+sed 's/localhost/wordpressdb.cmpo4g8fgirl.us-west-2.rds.amazonaws.com/' -i /var/www/html/wordpress/wp-config.php
+sed '/Directory \"\/var\/www\/html/,/AllowOverride None/s/AllowOverride None/AllowOverride All/' -i /etc/httpd/conf/httpd.conf
+groupadd www
+usermod -a -G www apache
+chown -R apache:www /var/www
+chmod 2775 /var/www
+find /var/www -type d -exec chmod 2775 {} \;
+find /var/www -type f -exec chmod 0664 {} \;
+systemctl restart httpd.service
+

@@ -1,0 +1,286 @@
+{
+    "SecurityGroups": [
+        {
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1", 
+                    "PrefixListIds": [], 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ], 
+                    "UserIdGroupPairs": [], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "Description": "Allow access from HTTP and SSH traffic", 
+            "Tags": [
+                {
+                    "Value": "arn:aws:cloudformation:us-east-2:366284824591:stack/dynacorp/4966b0e0-d64e-11e8-b8fa-0a849e1b5978", 
+                    "Key": "aws:cloudformation:stack-id"
+                }, 
+                {
+                    "Value": "DynaWebSecurityGroup", 
+                    "Key": "aws:cloudformation:logical-id"
+                }, 
+                {
+                    "Value": "dynacorp", 
+                    "Key": "aws:cloudformation:stack-name"
+                }
+            ], 
+            "IpPermissions": [
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 80, 
+                    "IpRanges": [], 
+                    "ToPort": 80, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "366284824591", 
+                            "GroupId": "sg-034780787a2b3ea05"
+                        }
+                    ], 
+                    "Ipv6Ranges": []
+                }, 
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 22, 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "140.209.14.66/32"
+                        }
+                    ], 
+                    "ToPort": 22, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "GroupName": "dynacorp-DynaWebSecurityGroup-NF9CXTT8QAJ8", 
+            "VpcId": "vpc-096d7ffcaa51f5d6f", 
+            "OwnerId": "366284824591", 
+            "GroupId": "sg-00879d0a38b3a89e8"
+        }, 
+        {
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1", 
+                    "PrefixListIds": [], 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ], 
+                    "UserIdGroupPairs": [], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "Description": "Allow access from Internet", 
+            "Tags": [
+                {
+                    "Value": "dynacorp", 
+                    "Key": "aws:cloudformation:stack-name"
+                }, 
+                {
+                    "Value": "arn:aws:cloudformation:us-east-2:366284824591:stack/dynacorp/4966b0e0-d64e-11e8-b8fa-0a849e1b5978", 
+                    "Key": "aws:cloudformation:stack-id"
+                }, 
+                {
+                    "Value": "DynaELBSecurityGroup", 
+                    "Key": "aws:cloudformation:logical-id"
+                }
+            ], 
+            "IpPermissions": [
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 80, 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ], 
+                    "ToPort": 80, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "GroupName": "dynacorp-DynaELBSecurityGroup-T1HT21CSCE9K", 
+            "VpcId": "vpc-096d7ffcaa51f5d6f", 
+            "OwnerId": "366284824591", 
+            "GroupId": "sg-034780787a2b3ea05"
+        }, 
+        {
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1", 
+                    "PrefixListIds": [], 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ], 
+                    "UserIdGroupPairs": [], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "Description": "Allow access from webservers Redis traffic", 
+            "Tags": [
+                {
+                    "Value": "dynacorp", 
+                    "Key": "aws:cloudformation:stack-name"
+                }, 
+                {
+                    "Value": "arn:aws:cloudformation:us-east-2:366284824591:stack/dynacorp/4966b0e0-d64e-11e8-b8fa-0a849e1b5978", 
+                    "Key": "aws:cloudformation:stack-id"
+                }, 
+                {
+                    "Value": "DynacacheSecurityGroup", 
+                    "Key": "aws:cloudformation:logical-id"
+                }
+            ], 
+            "IpPermissions": [
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 6379, 
+                    "IpRanges": [], 
+                    "ToPort": 6379, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "366284824591", 
+                            "GroupId": "sg-00879d0a38b3a89e8"
+                        }
+                    ], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "GroupName": "dynacorp-DynacacheSecurityGroup-1DXR81YC6JWD3", 
+            "VpcId": "vpc-096d7ffcaa51f5d6f", 
+            "OwnerId": "366284824591", 
+            "GroupId": "sg-08052f9b0abebe196"
+        }, 
+        {
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1", 
+                    "PrefixListIds": [], 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ], 
+                    "UserIdGroupPairs": [], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "Description": "default VPC security group", 
+            "IpPermissions": [
+                {
+                    "IpProtocol": "-1", 
+                    "PrefixListIds": [], 
+                    "IpRanges": [], 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "366284824591", 
+                            "GroupId": "sg-0bda0ba8022650d79"
+                        }
+                    ], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "GroupName": "default", 
+            "VpcId": "vpc-096d7ffcaa51f5d6f", 
+            "OwnerId": "366284824591", 
+            "GroupId": "sg-0bda0ba8022650d79"
+        }, 
+        {
+            "IpPermissionsEgress": [
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 22, 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ], 
+                    "ToPort": 22, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "Description": "launch-wizard-1 created 2018-10-22T19:13:56.999-05:00", 
+            "IpPermissions": [
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 80, 
+                    "IpRanges": [], 
+                    "ToPort": 80, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "366284824591", 
+                            "GroupId": "sg-00879d0a38b3a89e8"
+                        }
+                    ], 
+                    "Ipv6Ranges": []
+                }, 
+                {
+                    "PrefixListIds": [], 
+                    "FromPort": 8080, 
+                    "IpRanges": [], 
+                    "ToPort": 8080, 
+                    "IpProtocol": "tcp", 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "366284824591", 
+                            "GroupId": "sg-00879d0a38b3a89e8"
+                        }
+                    ], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "GroupName": "dynacorp-Dynaprivate-apps", 
+            "VpcId": "vpc-096d7ffcaa51f5d6f", 
+            "OwnerId": "366284824591", 
+            "GroupId": "sg-0d0c7080e94ee092b"
+        }, 
+        {
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1", 
+                    "PrefixListIds": [], 
+                    "IpRanges": [
+                        {
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ], 
+                    "UserIdGroupPairs": [], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "Description": "default VPC security group", 
+            "IpPermissions": [
+                {
+                    "IpProtocol": "-1", 
+                    "PrefixListIds": [], 
+                    "IpRanges": [], 
+                    "UserIdGroupPairs": [
+                        {
+                            "UserId": "366284824591", 
+                            "GroupId": "sg-7160f61c"
+                        }
+                    ], 
+                    "Ipv6Ranges": []
+                }
+            ], 
+            "GroupName": "default", 
+            "VpcId": "vpc-a62814ce", 
+            "OwnerId": "366284824591", 
+            "GroupId": "sg-7160f61c"
+        }
+    ]
+}

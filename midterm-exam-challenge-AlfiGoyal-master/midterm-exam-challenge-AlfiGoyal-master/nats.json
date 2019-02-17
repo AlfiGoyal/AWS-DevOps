@@ -1,0 +1,34 @@
+{
+    "NatGateways": [
+        {
+            "NatGatewayAddresses": [
+                {
+                    "PublicIp": "18.217.148.33", 
+                    "NetworkInterfaceId": "eni-0f98ce2a9198296cb", 
+                    "AllocationId": "eipalloc-0a5212b37e8a0ef8f", 
+                    "PrivateIp": "10.0.0.83"
+                }
+            ], 
+            "VpcId": "vpc-096d7ffcaa51f5d6f", 
+            "State": "available", 
+            "NatGatewayId": "nat-0000267a210b0a6a8", 
+            "SubnetId": "subnet-0a8c1024acb68b448", 
+            "CreateTime": "2018-10-22T23:24:03.000Z"
+        }, 
+        {
+            "NatGatewayAddresses": [
+                {
+                    "PublicIp": "18.217.192.15", 
+                    "NetworkInterfaceId": "eni-0837ff7a9317da2c0", 
+                    "AllocationId": "eipalloc-0946b086b59e94945", 
+                    "PrivateIp": "10.0.5.194"
+                }
+            ], 
+            "VpcId": "vpc-096d7ffcaa51f5d6f", 
+            "State": "available", 
+            "NatGatewayId": "nat-0db839e2023d586e1", 
+            "SubnetId": "subnet-01b932d4078dd220b", 
+            "CreateTime": "2018-10-23T00:05:37.000Z"
+        }
+    ]
+}

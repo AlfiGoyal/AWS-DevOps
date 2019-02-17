@@ -1,0 +1,59 @@
+---
+- name: install apache
+  hosts: all
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+
+  tasks:
+  - name: upgrade all packages
+    yum:
+      name: '*'
+      state: latest
+
+  - name: install the latest version of Apache
+    yum:
+      name: httpd
+      state: latest
+
+  - name: install the latest version of php
+    yum:
+      name: php
+      state: latest
+
+  - name: install the latest version of php-mysqlnd
+    yum:
+      name: php-mysqlnd
+      state: latest
+
+  - name: start Apache
+    service: name=httpd state=started enabled=yes
+
+- name: install wordpress 
+  hosts: all
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  
+  vars:
+    database_name: '{{ lookup("env", "DATABASE_NAME") }}'
+    database_username: '{{ lookup("env", "DATABASE_USERNAME") }}'
+    database_password: '{{ lookup("env", "DATABASE_PASSWORD") }}'
+    database_endpoint: '{{ lookup("env", "DATABASE_ENDPOINT") }}'
+
+  tasks:
+  - name: download wordpress
+    get_url:
+      url: https://wordpress.org/latest.tar.gz
+      dest: /var/www/wp.tar.gz
+
+  - name: extract wordpress
+    unarchive:
+      src: /var/www/wp.tar.gz
+      dest: /var/www/html
+      copy: no
+  
+  - name: Copy wp-config.php with var credentials
+    template:
+      src: /home/ec2-user/ansible_templates/wp-config.j2
+      dest: /var/www/html/wordpress/wp-config.php

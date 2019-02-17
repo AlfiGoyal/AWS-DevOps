@@ -1,0 +1,142 @@
+Started by GitHub push by AlfiGoyal
+Obtained Jenkinsfile from git https://github.com/seis665/assignment-10-docker-AlfiGoyal.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] node
+Running on 4bba73194779 in /workspace/docker-pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Fetching changes from the remote Git repository
+Checking out Revision 2ff057265f30cf2b93edaabca0293fd6ae462cbe (refs/remotes/origin/master)
+Commit message: "Update Dockerfile"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Linting)
+[Pipeline] git
+Fetching changes from the remote Git repository
+Checking out Revision 2ff057265f30cf2b93edaabca0293fd6ae462cbe (refs/remotes/origin/master)
+Commit message: "Update Dockerfile"
+[Pipeline] sh
++ flake8 app/site.py
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+ > git rev-parse --is-inside-work-tree # timeout=10
+ > git config remote.origin.url https://github.com/seis665/assignment-10-docker-AlfiGoyal.git # timeout=10
+Fetching upstream changes from https://github.com/seis665/assignment-10-docker-AlfiGoyal.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials Assignment 10 credentials
+ > git fetch --tags --progress https://github.com/seis665/assignment-10-docker-AlfiGoyal.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 2ff057265f30cf2b93edaabca0293fd6ae462cbe
+ > git rev-list --no-walk a3a7993b9b2cc794c3cec1b118b5ccd413ce08be # timeout=10
+[Pipeline] { (Build)
+[Pipeline] sh
+ > git rev-parse --is-inside-work-tree # timeout=10
+ > git config remote.origin.url https://github.com/seis665/assignment-10-docker-AlfiGoyal.git # timeout=10
+Fetching upstream changes from https://github.com/seis665/assignment-10-docker-AlfiGoyal.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials Assignment 10 credentials
+ > git fetch --tags --progress https://github.com/seis665/assignment-10-docker-AlfiGoyal.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 2ff057265f30cf2b93edaabca0293fd6ae462cbe
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 2ff057265f30cf2b93edaabca0293fd6ae462cbe
++ docker build -t classweb:19 .
+Sending build context to Docker daemon    235kB
+
+Step 1/11 : FROM ubuntu:16.04
+ ---> a51debf7e1eb
+Step 2/11 : LABEL maintainer="Alfi Goyal - goya8893@stthomas.edu"
+ ---> Using cache
+ ---> 620ed3018fa7
+Step 3/11 : EXPOSE 8080
+ ---> Using cache
+ ---> a5ce76259f8a
+Step 4/11 : RUN apt-get update -y
+ ---> Using cache
+ ---> c77ca7c182c7
+Step 5/11 : RUN apt-get install -y python-pip
+ ---> Using cache
+ ---> e03a132ae128
+Step 6/11 : RUN apt-get install -y python-dev
+ ---> Using cache
+ ---> 57a8b34d93a0
+Step 7/11 : COPY /app /app
+ ---> Using cache
+ ---> d5b81b538cf8
+Step 8/11 : WORKDIR /app
+ ---> Using cache
+ ---> 8fe4e4c86fa9
+Step 9/11 : RUN pip install -r requirements.txt
+ ---> Using cache
+ ---> 2a0c0eb023d9
+Step 10/11 : CMD ["python"]
+ ---> Running in dade25e8dbfc
+Removing intermediate container dade25e8dbfc
+ ---> fef3eff2d382
+Step 11/11 : ENTRYPOINT ["python", "site.py"]
+ ---> Running in f3c3708c11e2
+Removing intermediate container f3c3708c11e2
+ ---> 0a3a12f961b3
+Successfully built 0a3a12f961b3
+Successfully tagged classweb:19
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] sh
++ docker run -d -p 80:8080 --name classweb1 classweb:19
+d87f67c80a1697e944c091b9143013bb5860696b7717d3acb877a7a92f01740e
+[Pipeline] sh
++ grep super
++ curl 169.254.169.254/latest/meta-data/local-ipv4
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100    11  100    11    0     0  11000      0 --:--:-- --:--:-- --:--:-- 11000
++ curl --ipv4 10.120.1.10
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100    74  100    74    0     0   2055      0 --:--:-- --:--:-- --:--:--  2114
+<html><body><b>Working with containers is super fun!</b></body>    </html>
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker ps -q --filter name=classweb1
+[Pipeline] sh
++ docker ps -q --filter name=classweb1
++ docker stop d87f67c80a16
+d87f67c80a16
+[Pipeline] sh
++ docker ps -q -a --filter name=classweb1
+[Pipeline] sh
++ docker ps -q -a --filter name=classweb1
++ docker rm d87f67c80a16
+d87f67c80a16
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
